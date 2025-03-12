@@ -60,55 +60,41 @@ class TaskManager {
         }
     }
 
-    // MISSING FEATURES:
-
-    // 1. Remove a task by name
-    public void removeTask(String name) {
-        // TODO: Implement removal logic
-    }
-
-    // 2. Find all completed tasks
-    public List<Task> getCompletedTasks() {
-        // TODO: Implement logic to return completed tasks
-        return new ArrayList<>();
-    }
-
-    // 3. List tasks sorted by name
-    public void sortTasksByName() {
-        // TODO: Implement sorting logic
-    }
-
-    // 4. Sort tasks by priority
-    public void sortTasksByPriority() {
-        // TODO: Implement sorting by priority logic
-    }
-
-    // 5. Filter tasks by category
-    public List<Task> filterByCategory(String category) {
-        // TODO: Implement filtering logic
-        return new ArrayList<>();
-    }
-
-    // 6. Find the highest-priority unfinished task
-    public List<Task> getMostUrgentTasks() {
-        // TODO: Implement logic to find most urgent tasks
-        return new ArrayList<>();
-    }
-
     // 7. Count tasks per category
     public Map<String, Integer> countTasksPerCategory() {
-        // TODO: Implement counting logic
-        return new HashMap<>();
+        Map<String, Integer> categoryCount = new HashMap<>();
+        for (Task task : tasks) {
+            categoryCount.put(task.getCategory(), categoryCount.getOrDefault(task.getCategory(), 0) + 1);
+        }
+        return categoryCount;
     }
 
     // 8. Mark a task as completed by name
     public void markTaskCompleted(String name) {
-        // TODO: Implement completion logic
+        for (Task task : tasks) {
+            if (task.getName().equalsIgnoreCase(name)) {
+                task.complete();
+                System.out.println("Task '" + name + "' marked as completed.");
+                return;
+            }
+        }
+        System.out.println("Task '" + name + "' not found.");
     }
 
     // 9. Mark all tasks in a category as completed
     public void markCategoryCompleted(String category) {
-        // TODO: Implement bulk completion logic
+        boolean found = false;
+        for (Task task : tasks) {
+            if (task.getCategory().equalsIgnoreCase(category)) {
+                task.complete();
+                found = true;
+            }
+        }
+        if (found) {
+            System.out.println("All tasks in category '" + category + "' marked as completed.");
+        } else {
+            System.out.println("No tasks found in category '" + category + "'.");
+        }
     }
 }
 
@@ -118,9 +104,29 @@ public class SI2025Lab1Main {
         manager.addTask("Write report", Priority.HIGH, "Work");
         manager.addTask("Submit assignment", Priority.MEDIUM, "School");
         manager.addTask("Buy groceries", Priority.LOW, "Personal");
+        manager.addTask("Finish project", Priority.HIGH, "Work");
+        manager.addTask("Exercise", Priority.MEDIUM, "Personal");
 
-        // MISSING: Calls to the new methods that will be implemented
+        // Print all tasks
+        manager.printTasks();
 
+        // Count and display tasks per category
+        System.out.println("\nTask count per category:");
+        Map<String, Integer> categoryCounts = manager.countTasksPerCategory();
+        for (Map.Entry<String, Integer> entry : categoryCounts.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        // Mark a task as completed
+        System.out.println("\nMarking 'Submit assignment' as completed...");
+        manager.markTaskCompleted("Submit assignment");
+
+        // Mark all tasks in a category as completed
+        System.out.println("\nMarking all 'Work' tasks as completed...");
+        manager.markCategoryCompleted("Work");
+
+        // Print tasks again to verify changes
+        System.out.println("\nUpdated Task List:");
         manager.printTasks();
     }
 }
