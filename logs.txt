@@ -1,0 +1,16 @@
+G:\SI_2025_lab1_226142>git log --oneline --graph --all
+*   16c6217 (HEAD -> master, origin/master, origin/HEAD) Merge branch '9-mark-all-tasks-in-a-category-as-completed'
+|\
+| * 735d156 (origin/9-mark-all-tasks-in-a-category-as-completed, 9-mark-all-tasks-in-a-category-as-completed) Implemented 9-mark-all-tasks-in-a-category-as-completed
+* |   0b5b847 Merge pull request #11 from Kristijan-Peshevski/8-mark-a-task-as-completed-by-name
+|\ \
+| * | 51550a4 (origin/8-mark-a-task-as-completed-by-name, 8-mark-a-task-as-completed-by-name) Implemented 8-mark-a-task-as-completed-by-name
+| |/
+* |   434b216 Merge pull request #10 from Kristijan-Peshevski/7-count-tasks-per-category
+|\ \
+| |/
+|/|
+| * f3bbbc5 (origin/7-count-tasks-per-category, 7-count-tasks-per-category) Implemented 7-count-tasks-per-category
+|/
+* c4a3ad2 Add starter code
+* f5d3fd3 Initial commit
